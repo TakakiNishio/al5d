@@ -7,3 +7,4 @@
 
 $ echo "PATH=$PATH:/home/Document/AL5D_in_Salento/ros_al5d" >> ~/.bashrc
 $ echo "ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:/home/Document/AL5D_in_Salento/ros_al5d" >> ~/.bashrc
+$ source ~/.bashrc

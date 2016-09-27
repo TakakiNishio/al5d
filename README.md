@@ -5,6 +5,6 @@
    $ echo "source ~/Documents/AL5D_in_Salento/ros_ws/devel/setup.bash" >> ~/.bashrc
    $ source ~/.bashrc
 
-$ echo "PATH=$PATH:/home/Document/AL5D_in_Salento/ros_al5d" >> ~/.bashrc
-$ echo "ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:/home/Document/AL5D_in_Salento/ros_al5d" >> ~/.bashrc
+$ echo "PATH=$PATH:/home/Documents/AL5D_in_Salento/ros_al5d" >> ~/.bashrc
+$ echo "ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:/home/Documents/AL5D_in_Salento/ros_al5d" >> ~/.bashrc
 $ source ~/.bashrc
