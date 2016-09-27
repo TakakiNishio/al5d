@@ -1,0 +1,2 @@
+
+-DCATKIN_DEVEL_PREFIX=/home/student/Documents/AL5D_in_Salento/ros_ws/devel -DCMAKE_INSTALL_PREFIX=/home/student/Documents/AL5D_in_Salento/ros_ws/install -G Unix Makefiles
