@@ -11,9 +11,9 @@ echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 ```
 
-1. connect the arm and PC using Bluetooth    
+1. connect the arm and PC using Bluetooth (RADME @ directory　"python")    
 
-2. move the arm by Python commands    
+2. move the arm by Python commands (RADME @ directory　"python")    
 
 4. simulation model in rviz    
 ```bash
