@@ -1,0 +1,3 @@
+
+takaki@inspiron13:~/catkin_ws/src/al5d/src/urdf$ roslaunch urdf_tutorial display.launch model:=sample.urdf gui:=True
+
