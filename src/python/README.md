@@ -1,9 +1,10 @@
-****AL5D moving descriptions****
+#AL5D moving descriptions
 
 ---------------------------------------------------------------
 
 1. Bluetooth connection
 
+```bash
 student@vaio:~$ sudo hcitool scan 
 [sudo] password for student: 
 Scanning ...
@@ -14,16 +15,19 @@ student@vaio:~$ ls -l /dev/rfcomm0
 crw-rw---- 1 root dialout 216, 0 Sep 26 11:29 /dev/rfcomm0
 
 student@vaio:~$ sudo chmod 777 /dev/rfcomm0
+```
 
 ---------------------------------------------------------------
 
 2. Python commands
 
+```bash
 student@vaio:~$ python
 >>> import serial
 >>> ssc32 = serial.Serial('/dev/rfcomm0', 115200);
 >>> ssc32.write("#0 P1600 T500\r")  
+```
 
-#ssc32.write("#(motor's port No.) P1(position) T(speed)\r") 
+ssc32.write("#(motor's port No.) P1(position) T(moving time)\r") 
 
 ---------------------------------------------------------------

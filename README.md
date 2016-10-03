@@ -20,5 +20,5 @@ source ~/.bashrc
 roscd al5d
 cd src/urdf
 roslaunch urdf_tutorial display.launch model:=sample.urdf gui:=True
-```bash
+```
 
