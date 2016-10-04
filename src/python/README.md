@@ -1,6 +1,8 @@
 #AL5D moving descriptions
 
-1. Bluetooth connection
+---------------------------------------------------------------
+
+##Bluetooth connection
 
 ```bash
 student@vaio:~$ sudo hcitool scan 
@@ -15,7 +17,9 @@ crw-rw---- 1 root dialout 216, 0 Sep 26 11:29 /dev/rfcomm0
 student@vaio:~$ sudo chmod 777 /dev/rfcomm0
 ```
 
-2. Python commands
+---------------------------------------------------------------
+
+##Python commands
 
 ```bash
 student@vaio:~$ python
@@ -27,7 +31,9 @@ student@vaio:~$ python
 ssc32.write("#(motor's port No.) P(position) T(moving time)\r")
 ``` 
 
-3. Python scripts
+---------------------------------------------------------------
+
+##Python scripts
 
 ```bash
 student@vaio:~$ python simple_motion.py
