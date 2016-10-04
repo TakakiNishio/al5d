@@ -27,7 +27,8 @@ student@vaio:~$ python
 >>> ssc32 = serial.Serial('/dev/rfcomm0', 115200);
 >>> ssc32.write("#0 P1600 T500\r")  
 ```
-
-ssc32.write("#(motor's port No.) P1(position) T(moving time)\r") 
+```bash
+ssc32.write("#(motor's port No.) P(position) T(moving time)\r")
+``` 
 
 ---------------------------------------------------------------
