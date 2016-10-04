@@ -11,11 +11,13 @@ echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 ```
 
-1. connect the arm and PC using Bluetooth (see README.md @ directory: al5d/src/python)    
+2. connect the arm and PC using Bluetooth (see README.md @ directory: al5d/src/python)    
 
-2. move the arm by Python commands (see README.md @ directory: al5d/src/python)    
+3. move the arm by Python commands (see README.md @ directory: al5d/src/python)    
 
-4. simulation model in rviz    
+4. move the arm by Python scripts (see README.md @ directory: al5d/src/python)    
+
+5. simulation model in rviz    
 ```bash
 roscd al5d
 cd src/urdf

@@ -32,3 +32,16 @@ ssc32.write("#(motor's port No.) P(position) T(moving time)\r")
 ``` 
 
 ---------------------------------------------------------------
+
+3. Python scripts
+
+```bash
+student@vaio:~$ python simple_motion.py
+```
+・simple_motion.py: move the arm a little  
+・simple_grasp.py: grasp the eraser and carry another place  
+・key_input.py: move by keyboard input (servo position)  
+・arm_move_no_limitter.py: move by keyboard input (joint angle[deg]) !no limitter!  
+・arm_move.py: move by keyboard input (joint angle[deg]) with limitter (under modification)  
+
+---------------------------------------------------------------
