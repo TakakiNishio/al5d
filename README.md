@@ -1,4 +1,4 @@
-#Project AL5D  
+#Project AL5D @ University of Salento
 1. install ROS package al5d  
 ```bash
 cd ~/catkin_ws/src
