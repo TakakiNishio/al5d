@@ -28,9 +28,75 @@ def position_checker(deg,grip):
     z0 =67
     x0 = 15
 
-    theta1 = float(deg[0]*(m.pi/180))
+    theta0 = float(deg[0]*(m.pi/180))
+    theta1 = float(deg[1]*(m.pi/180))
+    theta2 = float(deg[2]*(m.pi/180))
+    theta3 = float(deg[3]*(m.pi/180))
+    theta_sum01 = theta0 + theta1
+    theta_sum = theta0 + theta1 + theta2 + theta3
+    #---------------------------------------------
+    a1 = l1 * np.cos(theta0)
+    b1 = a1 + l2 * np.cos(theta_sum01)
+    c1 = b1 + l3 * np.cos(theta_sum)
+    #---------------------------------------------
+    a2 = l1 * np.sin(theta0)
+    b2 = a1 + l2 * np.sin(theta_sum01)
+    c2 = b1 + l3 * np.sin(theta_sum)
 
-    return theta1
+    A = [[0 for i in range(3)] for j in range(3)]
+    A[0][0] = np.cos(theta_sum)
+    A[0][1] = -np.sin(theta_sum)
+    A[0][2] = c1
+    A[1][0] = np.sin(theta_sum)
+    A[1][1] = np.cos(theta_sum)
+    A[1][2] = c2
+    A[2][0] = 0
+    A[2][1] = 0
+    A[2][2] = 1
+    #print A
+
+    S = [[0 for i in range(3)] for j in range(3)]
+    S[0][0] = (c1+x0)*np.cos(theta0)
+    S[0][1] = (c1+x0)*np.sin(theta0)
+    S[0][2] = c2 + z0
+    S[1][0] = (b1+x0)*np.cos(theta0)
+    S[1][1] = (b1+x0)*np.cos(theta0)
+    S[1][2] = b2 + z0
+    S[2][0] = (a1+x0)*np.cos(theta0)
+    S[2][1] = (a1+x0)*np.cos(theta0)
+    S[2][2] = a2 + z0
+    #print S
+
+    error_flag = 0
+
+    for i in range(0,3):
+        if S[i][2] < 20:
+            if i == 1:
+                print "!!Position Error: The elbow position is out from the workspace."
+                error_flag = 1
+            elif i == 2:
+                print "!!Position Error: The wrist position is out from the workspace."
+                error_flag = 1
+            elif i == 3:
+                print "!!Position Error: The gripper position is out from the workspace."
+                error_flag = 1
+
+        if S[i][1] < 0 and -100 < S[i][0] < 100 and S[i][2] < 120:
+            if i == 1:
+                print "!!Position Error: The elbow position is out from the workspace. Avoid a collision with electrical parts!"
+                error_flag = 1
+            elif i == 2:
+                print "!!Position Error: The wrist position is out from the workspace. Avoid a collision with electrical parts!"
+                error_flag = 1
+            elif i == 3:
+                print "!!Position Error: The gripper position is out from the workspace. Avoid a collision with electrical parts!"
+                error_flag = 1
+
+    if grip <= 0.05 or grip >= 30:
+        print "!!Gripper Erorr: Non-permitted gripper position"
+        error_flag = 1
+
+    return error_flag
 
 
 def deg2pos(deg,grip):
@@ -87,34 +153,43 @@ def serial_send(pos,tct):
 if __name__ == '__main__':
 
     ssc32 = serial.Serial('/dev/rfcomm0', 115200);
-    time.sleep(3.0)
 
-    initialize = init_arm(ssc32)
+    print "connected. press 0 + Enter to move the arm: "
+    init_bottun = raw_input('>>>  ')
 
-    theta = []
+    if init_bottun == '0':
 
-    print"imput each joint angle in deg."
-    print "theta_base:"
-    theta.append(float(raw_input('>>>  ')))
-    print "theta_shoulder:"
-    theta.append(float(raw_input('>>>  ')))
-    print "theta_elbow:"
-    theta.append(float(raw_input('>>>  ')))
-    print "theta_wrist:"
-    theta.append(float(raw_input('>>>  ')))
-    print"imput gripper dist(0.05-30)."
-    pos_g = float(raw_input('>>>  '))
+        initialize = init_arm(ssc32)
+        theta = []
+        print "imput each joint angle in deg."
+        print "theta_base:"
+        theta.append(float(raw_input('>>>  ')))
+        print "theta_shoulder:"
+        theta.append(float(raw_input('>>>  ')))
+        print "theta_elbow:"
+        theta.append(float(raw_input('>>>  ')))
+        print "theta_wrist:"
+        theta.append(float(raw_input('>>>  ')))
+        print "imput gripper dist(0.05 < dist < 30)."
+        pos_g = float(raw_input('>>>  '))
 
-    n = position_checker(theta, pos_g)
-    print n
+        position = deg2pos(theta, pos_g)
 
-    position = deg2pos(theta, pos_g)
+        print "input angle[deg]: " + str(theta)
+        print "psition: " + str(position)
 
-    print "input angle[deg]: " + str(theta)
-    print "psition: " + str(position)
+        error = position_checker(theta, pos_g)
 
-    s = serial_send(position,2000)
+        if error == 1:
+            print "operation stopped."
+        elif error == 0:
+            print "robot will move."
+            time.sleep(2.0)
+            s = serial_send(position,2000)
 
-    #print s
+            #print s
+
+    else:
+        print "operation canceled."
 
     ssc32.close()
