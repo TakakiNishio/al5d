@@ -24,7 +24,7 @@
     <child link="link1"/>
     <origin xyz="0 0 0.04" rpy="0 0 0" />
     <axis xyz="0 0 1" />
-    <limit lower="-2.61" upper="2.61" effort="0.5" velocity="6.0" />
+    <limit lower="0" upper="3.1415" effort="0.5" velocity="6.0" />
   </joint>
  
   <link name="link1">
@@ -40,7 +40,7 @@
     <visual>
       <origin xyz="0 0 0.025" rpy="0 0 0" />
       <geometry>
-        <box size="0.05 0.06 0.030" />
+        <box size="0.06 0.05 0.030" />
       </geometry>
     </visual>
   </link>
@@ -48,27 +48,27 @@
   <joint name="joint2" type="revolute">
     <parent link="link1"/>
     <child link="link2"/>
-    <origin xyz="0 0.015 0.027" rpy="0 0 0" />
-    <axis xyz="1 0 0" />
-    <limit lower="-1.75" upper="1.75" effort="0.5" velocity="6.0" />
+    <origin xyz="0.015 0 0.027" rpy="0 0 0" />
+    <axis xyz="0 -1 0" />
+    <limit lower="0" upper="3.1415" effort="0.5" velocity="6.0" />
   </joint>
  
   <link name="link2">
     <visual>
-      <origin xyz="0 0 0" rpy="0 1.57079632675 0" />
+      <origin xyz="0 0 0" rpy="1.57079632675 0 0" />
       <geometry>
         <cylinder radius="0.013" length="0.06" />
       </geometry>
       <material name="black" />
     </visual>
     <visual>
-      <origin xyz="0 0 0.0525" rpy="0 0 0" />
+      <origin xyz="0.0525 0 0" rpy="0 0 0" />
       <geometry>
-        <box size="0.06 0.026 0.105" />
+        <box size="0.105 0.06 0.026" />
       </geometry>
     </visual>
      <visual>
-      <origin xyz="0 0 0.105" rpy="0 1.57079632675 0" />
+      <origin xyz="0.105 0 0" rpy="1.57079632675 0 0" />
       <geometry>
         <cylinder radius="0.013" length="0.06" />
       </geometry>
@@ -78,29 +78,29 @@
   <joint name="joint3" type="revolute">
     <parent link="link2"/>
     <child link="link3"/>
-    <origin xyz="0 0 0.105" rpy="0 0 0" />
-    <axis xyz="-1 0 0" />
-    <limit lower="-2.55" upper="2.55" effort="0.5" velocity="6.0" />
+    <origin xyz="0.105 0 0" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-1.5708" upper="1.5708" effort="0.5" velocity="6.0" />
   </joint>
  
   <link name="link3">
     <visual>
-      <origin xyz="0 0 -0.0125" rpy="0 0 0" />
+      <origin xyz="-0.0125 0 0" rpy="0 0 0" />
       <geometry>
-        <box size="0.05 0.028 0.06" />
+        <box size="0.06 0.05 0.028" />
       </geometry>
       <material name="gray" />
     </visual>
     <visual>
-      <origin xyz="0 0 0.06" rpy="0 0 0" />
+      <origin xyz="0.06 0 0" rpy="0 1.57079632675 0" />
       <geometry>
         <cylinder radius="0.01" length="0.120" />
       </geometry>
     </visual>
     <visual>
-      <origin xyz="0 0 0.10" rpy="0 0 0" />
+      <origin xyz="0.10 0 0" rpy="0 0 0" />
       <geometry>
-        <box size="0.05 0.028 0.06" />
+        <box size="0.06 0.05 0.028" />
       </geometry>
     </visual>
   </link>
@@ -108,37 +108,37 @@
   <joint name="joint4" type="revolute">
     <parent link="link3"/>
     <child link="link4"/>
-    <origin xyz="0 0 0.120" rpy="0 0 0" />
-    <axis xyz="1 0 0" />
-    <limit lower="-1.80" upper="1.80" effort="0.5" velocity="6.0" />
+    <origin xyz="0.120 0 0" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit lower="-1.5708" upper="1.5708" effort="0.5" velocity="6.0" />
   </joint>
  
   <link name="link4">
     <visual>
-      <origin xyz="0 0 0" rpy="0 1.57079632675 0" />
+      <origin xyz="0 0 0" rpy="1.57079632675 0 0" />
       <geometry>
         <cylinder radius="0.013" length="0.06" />
       </geometry>
       <material name="black" />
     </visual>
     <visual>
-      <origin xyz="0 0 0.015" rpy="0 0 0" />
+      <origin xyz="0.015 0 0" rpy="0 0 0" />
       <geometry>
-        <box size="0.06 0.026 0.03" />
+        <box size="0.03 0.06 0.026" />
       </geometry>
       <material name="black" />
     </visual>
     <visual>
-      <origin xyz="0.026 0 0.0375" rpy="0 0 0" />
+      <origin xyz="0.0375 0.026 0" rpy="0 0 0" />
       <geometry>
-        <box size="0.013 0.022 0.0375" />
+        <box size="0.0375 0.013 0.022" />
       </geometry>
       <material name="black" />
     </visual>
     <visual>
-      <origin xyz="-0.026 0 0.0375" rpy="0 0 0" />
+      <origin xyz="0.0375 -0.026 0" rpy="0 0 0" />
       <geometry>
-        <box size="0.013 0.022 0.0375" />
+        <box size="0.0375 0.013 0.022" />
       </geometry>
       <material name="black" />
     </visual>
