@@ -4,6 +4,7 @@
 
 ##Bluetooth connection
 
+supply 6[V] to the robot  
 turn on the robot
 
 ```bash
