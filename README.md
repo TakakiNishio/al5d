@@ -17,10 +17,5 @@ source ~/.bashrc
 
 ・ move the arm by Python scripts (see README.md @ directory: al5d/src/python)    
 
-・ simulation model in rviz    
-```bash
-roscd al5d
-cd src/urdf
-roslaunch al5d rviz.launch model:=al5d.urdf gui:=True
-```
+・ simulate the arm in rviz and move the arm with simulation (see README.md @ directory: al5d/src/python)    
 

@@ -1,7 +1,13 @@
+#!/usr/bin/env python
+
 import serial
 import time
 import numpy as np
 import math as m
+
+import rospy
+from sensor_msgs.msg import JointState
+from std_msgs.msg import Header
 
 
 def init_arm(board):
@@ -16,19 +22,54 @@ def init_arm(board):
 
     return ok
 
+def talker_init():
 
-def deg2rad(deg):
+    theta1 = float(90*(m.pi/180))
+    theta2 = float(128.571*(m.pi/180))
+    theta3 = float(-85.424*(m.pi/180))
+    theta4 = float(-65*(m.pi/180))
 
-    rad = []
-    rad.append(float(deg[0]*(m.pi/180)))
-    rad.append(float(deg[1]*(m.pi/180)))
-    rad.append(float(deg[2]*(m.pi/180)))
-    rad.append(float(deg[3]*(m.pi/180)))
+    pub = rospy.Publisher('joint_states', JointState, queue_size=10)
+    rospy.init_node('joint_state_publisher')
+    rate = rospy.Rate(10) # 10Hz
+    al5d_str = JointState()
+    al5d_str.header = Header()
+    al5d_str.header.stamp = rospy.Time.now()
+    al5d_str.name = ['joint1', 'joint2', 'joint3', 'joint4']
+    al5d_str.position = [theta1, theta2, theta3, theta4]
+    al5d_str.velocity = []
+    al5d_str.effort = []
 
-    return rad
+    for i in range(0,10):
+        al5d_str.header.stamp = rospy.Time.now()
+        pub.publish(al5d_str)
+        rate.sleep()
+
+def talker(deg):
+
+    theta1 = float(deg[0]*(m.pi/180))
+    theta2 = float(deg[1]*(m.pi/180))
+    theta3 = float(deg[2]*(m.pi/180))
+    theta4 = float(deg[3]*(m.pi/180))
+
+    pub = rospy.Publisher('joint_states', JointState, queue_size=10)
+    rospy.init_node('joint_state_publisher')
+    rate = rospy.Rate(10) # 10Hz
+    al5d_str = JointState()
+    al5d_str.header = Header()
+    al5d_str.header.stamp = rospy.Time.now()
+    al5d_str.name = ['joint1', 'joint2', 'joint3', 'joint4']
+    al5d_str.position = [theta1, theta2, theta3, theta4]
+    al5d_str.velocity = []
+    al5d_str.effort = []
+
+    for i in range(0,10):
+        al5d_str.header.stamp = rospy.Time.now()
+        pub.publish(al5d_str)
+        rate.sleep()
 
 
-def position_checker(rad,grip):
+def position_checker(deg,grip):
 
     #link length
     l1 = 120
@@ -39,10 +80,10 @@ def position_checker(rad,grip):
     z0 =67
     x0 = 15
 
-    theta0 = rad[0]
-    theta1 = rad[1]
-    theta2 = rad[2]
-    theta3 = rad[3]
+    theta0 = float(deg[0]*(m.pi/180))
+    theta1 = float(deg[1]*(m.pi/180))
+    theta2 = float(deg[2]*(m.pi/180))
+    theta3 = float(deg[3]*(m.pi/180))
     theta_sum01 = theta0 + theta1
     theta_sum = theta0 + theta1 + theta2 + theta3
     #---------------------------------------------
@@ -171,35 +212,39 @@ if __name__ == '__main__':
     if init_bottun == '0':
 
         initialize = init_arm(ssc32)
-        theta_deg = []
+        talker_init()
+        theta = []
         print "imput each joint angle in deg."
         print "theta_base:"
-        theta_deg.append(float(raw_input('>>>  ')))
+        theta.append(float(raw_input('>>>  ')))
         print "theta_shoulder:"
-        theta_deg.append(float(raw_input('>>>  ')))
+        theta.append(float(raw_input('>>>  ')))
         print "theta_elbow:"
-        theta_deg.append(float(raw_input('>>>  ')))
+        theta.append(float(raw_input('>>>  ')))
         print "theta_wrist:"
-        theta_deg.append(float(raw_input('>>>  ')))
+        theta.append(float(raw_input('>>>  ')))
         print "imput gripper dist(0.05 < dist < 30)."
         pos_g = float(raw_input('>>>  '))
 
-        theta_rad = deg2rad(theta_deg)
-        position = deg2pos(theta_rad, pos_g)
+        position = deg2pos(theta, pos_g)
 
-        print "input angle[deg]: " + str(theta_deg)
+        print "input angle[deg]: " + str(theta)
         print "psition: " + str(position)
 
-        error = position_checker(theta_rad, pos_g)
+        error = position_checker(theta, pos_g)
+        talker(theta)
 
         if error == 1:
             print "operation stopped."
         elif error == 0:
-            print "robot will move."
-            time.sleep(2.0)
-            s = serial_send(position,2000)
-
-            #print s
+            print "robot will move in workspace."
+            print "press 1 + Enter to move the arm: "
+            init_bottun = raw_input('>>>  ')
+            if init_bottun == '1':
+                time.sleep(2.0)
+                s = serial_send(position,2000)
+            else:
+                print "operation canceled."
 
     else:
         print "operation canceled."

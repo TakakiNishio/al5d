@@ -4,6 +4,8 @@
 
 ##Bluetooth connection
 
+turn on the robot
+
 ```bash
 student@vaio:~$ sudo hcitool scan 
 [sudo] password for student: 
@@ -42,6 +44,54 @@ student@vaio:~$ python simple_motion.py
 ・simple_grasp.py: grasp the eraser and carry to another place  
 ・key_input.py: move by keyboard input (servo position)  
 ・arm_move_no_limitter.py: move by keyboard input (joint angle[deg]) !!!with no limitter!!!  
-・arm_move.py: move by keyboard input (joint angle[deg]) with limitter (under modification)  
+・arm_move.py: move by keyboard input (joint angle[deg]) with workspace limitter   
+・move_in_rviz.py: simulation in rviz (rosrun)  
+・arm_move_with_sim.py: move by keyboard input (joint angle[deg]) with workspace limitter and rviz simulation (rosrun)   
 
 ---------------------------------------------------------------
+
+##simulation in rviz with joint state publisher GUI    
+
+```bash
+roscd al5d
+cd src/urdf
+roslaunch al5d rviz.launch model:=al5d.urdf gui:=True
+```
+
+---------------------------------------------------------------
+
+##simulation in rviz with joint state publisher     
+
+```bash
+roscd al5d
+cd src/urdf
+roslaunch al5d rviz.launch model:=al5d.urdf
+```
+open another terminal
+
+```bash
+roscd al5d
+cd src/python
+chmod 755 move_in_rviz.py
+rosrun al5d move_in_rviz.py
+```
+
+---------------------------------------------------------------
+
+##move the arm with simulator
+
+turn on the robot and connect with PC using Bluetooth
+
+```bash
+roscd al5d
+cd src/urdf
+roslaunch al5d rviz.launch model:=al5d.urdf
+```
+open another terminal
+
+```bash
+roscd al5d
+cd src/python
+chmod 755 arm_move_with_sim.py
+rosrun al5d arm_move_with_sim.py
+```
