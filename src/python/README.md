@@ -39,6 +39,8 @@ ssc32.write("#(motor's port No.) P(position) T(moving time)\r")
 ##Python scripts
 
 ```bash
+student@vaio:~$　roscd al5d
+student@vaio:~$　cd src/python
 student@vaio:~$ python simple_motion.py
 ```
 ・simple_motion.py: move the arm a little  
@@ -54,9 +56,9 @@ student@vaio:~$ python simple_motion.py
 ##simulation in rviz with joint state publisher GUI    
 
 ```bash
-roscd al5d
-cd src/urdf
-roslaunch al5d rviz.launch model:=al5d.urdf gui:=True
+student@vaio:~$　roscd al5d
+student@vaio:~$　cd src/urdf
+student@vaio:~$　roslaunch al5d rviz.launch model:=al5d.urdf gui:=True
 ```
 
 ---------------------------------------------------------------
@@ -64,17 +66,17 @@ roslaunch al5d rviz.launch model:=al5d.urdf gui:=True
 ##simulation in rviz with joint state publisher     
 
 ```bash
-roscd al5d
-cd src/urdf
-roslaunch al5d rviz.launch model:=al5d.urdf
+student@vaio:~$　roscd al5d
+student@vaio:~$　cd src/urdf
+student@vaio:~$　roslaunch al5d rviz.launch model:=al5d.urdf
 ```
 open another terminal
 
 ```bash
-roscd al5d
-cd src/python
-chmod 755 move_in_rviz.py
-rosrun al5d move_in_rviz.py
+student@vaio:~$ roscd al5d
+student@vaio:~$ cd src/python
+student@vaio:~$ chmod 755 move_in_rviz.py
+student@vaio:~$ rosrun al5d move_in_rviz.py
 ```
 
 ---------------------------------------------------------------
@@ -84,15 +86,15 @@ rosrun al5d move_in_rviz.py
 turn on the robot and connect with PC using Bluetooth
 
 ```bash
-roscd al5d
-cd src/urdf
-roslaunch al5d rviz.launch model:=al5d.urdf
+student@vaio:~$ roscd al5d
+student@vaio:~$ cd src/urdf
+student@vaio:~$ roslaunch al5d rviz.launch model:=al5d.urdf
 ```
 open another terminal
 
 ```bash
-roscd al5d
-cd src/python
-chmod 755 arm_move_with_sim.py
-rosrun al5d arm_move_with_sim.py
+student@vaio:~$ roscd al5d
+student@vaio:~$ cd src/python
+student@vaio:~$ chmod 755 arm_move_with_sim.py
+student@vaio:~$ rosrun al5d arm_move_with_sim.py
 ```
