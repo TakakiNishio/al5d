@@ -1,8 +1,8 @@
-#AL5D moving descriptions
+# AL5D moving descriptions
 
 ---------------------------------------------------------------
 
-##Bluetooth connection
+## Bluetooth connection
 
 supply 6[V] to the robot  
 turn on the robot
@@ -22,7 +22,7 @@ student@vaio:~$ sudo chmod 777 /dev/rfcomm0
 
 ---------------------------------------------------------------
 
-##Python commands
+## Python commands
 
 ```bash
 student@vaio:~$ python
@@ -36,7 +36,7 @@ ssc32.write("#(motor's port No.) P(position) T(moving time)\r")
 
 ---------------------------------------------------------------
 
-##Python scripts
+## Python scripts
 
 ```bash
 student@vaio:~$　roscd al5d
@@ -53,7 +53,7 @@ student@vaio:~$ python simple_motion.py
 
 ---------------------------------------------------------------
 
-##simulation in rviz with joint state publisher GUI    
+## simulation in rviz with joint state publisher GUI    
 
 ```bash
 student@vaio:~$　roscd al5d
@@ -63,7 +63,7 @@ student@vaio:~$　roslaunch al5d rviz.launch model:=al5d.urdf gui:=True
 
 ---------------------------------------------------------------
 
-##simulation in rviz with joint state publisher     
+## simulation in rviz with joint state publisher     
 
 ```bash
 student@vaio:~$　roscd al5d
@@ -81,7 +81,7 @@ student@vaio:~$ rosrun al5d move_in_rviz.py
 
 ---------------------------------------------------------------
 
-##move the arm with simulator
+## move the arm with simulator
 
 turn on the robot and connect with PC using Bluetooth
 
