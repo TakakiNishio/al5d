@@ -3,7 +3,6 @@
 ```bash
 student@vaio:~$ cd ~/catkin_ws/src
 student@vaio:~$ git clone https://github.com/TakakiNishio/al5d.git al5d
-student@vaio:~$ rosmake al5d
 student@vaio:~$ cd .. && catkin_make
 ```
 ```bash
